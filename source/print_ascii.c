@@ -3,12 +3,13 @@
 int main()
 {
     int i;
-    i=0;
+    //char c;
+    i=33;
     do
-    {
+    {   //c = (char)i;
         printf("%d %c \n",i,i);
         i++;
     }
-    while(i<=255);
+    while(i<=126);
     return 0;
 }
