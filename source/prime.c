@@ -1,53 +1,32 @@
 #include <stdio.h>
+#include <stdlib.h>
 
+char isprime(unsigned long long x) {
 
-int main(void) {
-
-    long int d, s, e , start = 0, num_primes = 0;
-
-    printf("Enter start: " );
-    scanf("%d", &s);
-    printf("Enter end: " );
-    scanf("%d", &e);    
-
-    start = s;
-
-// start to end
-   for (;s <= e; s++) {
-
-//        printf("testing %d\n",  s); 
-
-//      test deelbaar door 2 tot wortel s
-
-        for (d = 2; d*d <= s ; d++) {
-
-//                printf("...deelbaar: %d\n",  d); 
-
-                if (s % d == 0 ) {
-
-//                    printf("%d is divisible by %d: %d \\ %d = %d\n", s,d, s, d, (s / d)); 
-
-                    break;
-                }  
-
-                else if ( (d + 1) * (d + 1) > s ) {
-
-//                     printf("%d is prime\n", s);
-
-                    num_primes++ ;
-
-                    if ((num_primes % 6) == 0) printf("\n");
-
-                     printf("%8d\t", s);
-                }
-
+    for (int i=2; (i*i)<=x; i++) {
+        if((x%i) == 0)   { 
+            //retval = 'N';
+            return 'N' ; //retval;
         }
+    }
+    return 'Y';
+}
 
 
-   }
+int main(int argc, char *argv[]) {
+    int i_min, i_max;
 
-    printf("\nNumber of primes found in range %d - %d  = %d\n", start, e, num_primes);
+    // not the best solution
+    i_min = atoi(argv[1]);
+    i_max = atoi(argv[2]);
 
-    return 0;
+	for(i_min=5;i_min<=i_max;i_min++) {
+		if(isprime(i_min)== 'Y') printf(" %10d",i_min);	
+	} 
+	printf("\n");
+	return 0;
 
 }
+
+
+
