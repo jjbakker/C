@@ -10,7 +10,7 @@ struct node {
 
 
 // function to add a node to the list, returns pointer to new struct node
-struct node *add_to_list(struct node *list, int n) {
+/* struct node *add_to_list(struct node *list, int n) {
     struct node *new_node;
     new_node = malloc(sizeof(struct node));
     if (new_node == NULL) {
@@ -21,7 +21,23 @@ struct node *add_to_list(struct node *list, int n) {
     new_node->value = n;
     new_node->next = list;
     return new_node;
+} */
+
+// variation using pointer to pointer to add a node to the list, 
+// no return value
+void add_to_list(struct node **list, int n) {
+    struct node *new_node;
+    new_node = malloc(sizeof(struct node));
+    if (new_node == NULL) {
+        printf("Error: malloc failed");
+        exit(EXIT_FAILURE);
+    }
+    // initialize value
+    new_node->value = n;
+    new_node->next = *list;
+    *list = new_node;
 }
+
 
 
 // function to get a specific value from the linked list
@@ -67,8 +83,12 @@ printf("node 1 at address %p and value %d\n", first, first->value);
 printf("node 2 at address %p and value %d\n", new_node, new_node->value);
 printf("node 2 at address %p and next %p\n", new_node, new_node->next);
 
-first = add_to_list(first, 30);
-first = add_to_list(first, 40);
+/* first = add_to_list(first, 30);
+first = add_to_list(first, 40); */
+
+
+add_to_list(&first, 30);
+add_to_list(&first, 40);
 
 printf("node 1 at address %p with value %d and next %p\n", first, first->value, first->next);
 printf("node 2 at address %p with value %d and next %p\n", first->next, first->next->value, first->next->next);
